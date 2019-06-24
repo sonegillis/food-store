@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button defaultHref=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add to Cart</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid no-padding>
+    <ion-row>
+      <ion-col no-padding size-md="6" offset-md="3">
+        <ion-img [src]="item.imageUrl"></ion-img>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" size-md="6" offset-md="3">
+        <h1 text-center>{{ item.name }}</h1>
+      </ion-col>
+      <ion-col size="12" size-md="6" offset-md="3">
+        <p text-center><b>XAF<span>{{ item.price }}</span></b></p>
+      </ion-col>
+      <ion-col size="12" size-md="6" offset-md="3">
+        <ion-list>
+          <ion-list-header><b>INGREDIENTS</b></ion-list-header>
+          <ion-item *ngFor="let ingredient of item.ingredients">{{ ingredient }}</ion-item>
+        </ion-list>
+      </ion-col>
+      <br>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" size-md="6" offset-md="3">
+        <ion-item>
+          <ion-label position="floating">Quantity</ion-label>
+          <ion-input [(ngModel)]="quantity" (ionChange)="getQuantity()" type="number"></ion-input>
+        </ion-item>
+      </ion-col>
+      <br>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" size-md="6" offset-md="3">
+        <ion-label text-left>
+          <ion-icon name="cash"></ion-icon>Total
+        </ion-label>
+        <ion-label text-right>
+          XAF<span> {{ total }}</span>  
+        </ion-label>
+      </ion-col>
+      <br>
+    </ion-row>
+    <ion-row>
+      <ion-col size-md="6" offset-md="3">
+        <div text-right>
+          <ion-button *ngIf="!foundInCart" (click)="addToCart()" fill="outline" color="primary">
+            <ion-icon name="add"></ion-icon>
+            Add
+          </ion-button>
+          <ion-chip *ngIf="foundInCart" fill="outline" color="secondary">
+            <ion-label>Item In Cart</ion-label>
+          </ion-chip>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
